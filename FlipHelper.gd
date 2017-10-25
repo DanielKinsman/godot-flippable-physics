@@ -31,26 +31,24 @@ func h_flip_children():
 	for n in node.get_children():
 		if not (n extends Node2D):
 			continue
+		
+		if n extends CollisionShape2D or n extends CollisionObject2D:
+			n.rotate(-2.0 * n.get_rot())
+		else:
+			n.scale(Vector2(-1, 1))
 			
-		if n extends Sprite:
-			n.set_flip_h(not n.is_flipped_h())
-		
-		# TODO die in a fire if n extends PhysicsBody2D?
-		
-		n.rotate(-2.0 * n.get_rot())
 		var pos = n.get_pos()
 		n.translate(Vector2(-2.0 * pos.x, 0.0))
-		
+
 func v_flip_children():
 	for n in node.get_children():
 		if not (n extends Node2D):
 			continue
+		
+		if n extends CollisionShape2D or n extends CollisionObject2D:
+			n.rotate(-2.0 * n.get_rot())
+		else:
+			n.scale(Vector2(1, -1))
 			
-		if n extends Sprite:
-			n.set_flip_v(not n.is_flipped_v())
-		
-		# TODO die in a fire if n extends PhysicsBody2D?
-		
-		n.rotate(-2.0 * n.get_rot())
 		var pos = n.get_pos()
 		n.translate(Vector2(0.0, -2.0 * pos.y))
